@@ -1,5 +1,8 @@
 #!/usr/bin/php
 <?php 
+/* 
+ * BASH FILE EXECUTED FROM CLI
+ */
 
 define('APP_ROOT', getcwd());
 
