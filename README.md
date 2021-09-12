@@ -43,3 +43,5 @@ This will return products that matches the name as well as the price
 * The API script can be improved by using any PHP framework or by implementing OOP approach
 * Can include an installation script which will create pre-requisites of the application
 * Can make the filenames and folder names generic and not to use static names
+* API requests can be secured by defining number of request per hour/day
+* API response should be paginated when we implement filtering multiple products for single request
