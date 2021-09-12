@@ -45,15 +45,15 @@ if(isset($_GET['name']) || isset($_GET['pvp'])) {
         $responsexml->addChild('description','Product Found');
         foreach($response as $key => $product) {
             $productnode = $responsexml->addChild('product');
-            $productnode->addChild("name", $product["name"]);
-            $productnode->addChild("sku", $product["sku"]);
-            $productnode->addChild("pvp", $product["pvp"]);
-            $productnode->addChild("discount", $product["discount"]);
+            $productnode->addChild('name', $product["name"]);
+            $productnode->addChild('sku', $product["sku"]);
+            $productnode->addChild('pvp', $product["pvp"]);
+            $productnode->addChild('discount', $product["discount"]);
         }
     } else {
         //if the response is empty no product match the filter
-        $response = array(200 => "code","No product found" => "description");
-        array_walk_recursive($response, array ($responsexml, 'addChild'));
+        $responsexml->addChild('code',200);
+        $responsexml->addChild('description','No product found');
     }
 }
 print $responsexml->asXML();
