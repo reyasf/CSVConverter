@@ -5,7 +5,7 @@
  */
 
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application / xml; charset=UTF-8");
+header("Content-Type: application/xml; charset=UTF-8");
 
 define('APP_ROOT', getcwd());
 
@@ -36,12 +36,20 @@ if(isset($_GET['name']) || isset($_GET['pvp'])) {
     //Loop through all the filtered keys
     foreach($product_keys as $key) {
         if($key !== null) {
-            $response[] = array($product_list[$key]["name"] => "name",$product_list[$key]["sku"] => "sku",$product_list[$key]["pvp"] => "pvp",$product_list[$key]["discount"] => "discount");
+            $response[] = array("name" => $product_list[$key]["name"],"sku" => $product_list[$key]["sku"],"pvp" => $product_list[$key]["pvp"],"discount" => $product_list[$key]["discount"]);
         }
     }
     if(count($response) > 0) {
         //convert the response to XML
-        array_walk_recursive($response, array ($responsexml, 'addChild'));
+        $responsexml->addChild('code',200);
+        $responsexml->addChild('description','Product Found');
+        foreach($response as $key => $product) {
+            $productnode = $responsexml->addChild('product');
+            $productnode->addChild("name", $product["name"]);
+            $productnode->addChild("sku", $product["sku"]);
+            $productnode->addChild("pvp", $product["pvp"]);
+            $productnode->addChild("discount", $product["discount"]);
+        }
     } else {
         //if the response is empty no product match the filter
         $response = array(200 => "code","No product found" => "description");
