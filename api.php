@@ -5,7 +5,7 @@
  */
 
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application / xml; charset=UTF-8");
 
 define('APP_ROOT', getcwd());
 
