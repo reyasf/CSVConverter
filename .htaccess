@@ -1,0 +1,5 @@
+RewriteEngine On    # Turn on the rewriting engine
+
+RewriteRule ^api/name/([0-9a-zA-Z_-]*)$ api.php?name=$1 [NC,L]
+
+RewriteRule ^api/pvp/([0-9a-zA-Z_-]*)$ api.php?pvp=$1 [NC,L]
